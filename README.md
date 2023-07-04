@@ -6,6 +6,8 @@ Deployed at: https://classification-chi.vercel.app/
 
 Deploy using: 
 
+at `./proj`
+
 ```
 vercel
 ```

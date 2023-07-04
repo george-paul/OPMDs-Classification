@@ -1,7 +1,6 @@
 
 <script>
 // TODO: Make responsive
-// TODO: Cancel/close button disappears on white images/backgrounds
 
 
 // @ts-nocheck
@@ -30,16 +29,30 @@
     isLoading = false;
     classified = false;
   }
-  
-  
+
+  function offsetToIndia(date) {
+    date.setMinutes((date.getMinutes() + 30) % 60);
+    date.setHours((date.getHours() + 6) % 60);
+    return date
+  }
+
   const classify = async () => {
     isLoading = true;
 
     const fd = new FormData();
+    // image data
     fd.append('image', imageFile);
+    // path to save the image at in minio
+    let date = new Date();
+    let convDate = offsetToIndia(date)
+    let timestring = convDate.toISOString().substring(0,19)
+    timestring = timestring.replace(/\D/g, "")
+    console.log(timestring)
+
+    fd.append('path', "webapp_"+timestring+".jpg")
 
     // Send a POST request
-    fetch('https://healthcare-data.iiit.ac.in/inferencedev/upload_nominio', {
+    fetch('https://healthcare-data.iiit.ac.in/inferencedev/upload', {
       method: 'POST',
       body: fd
     })
