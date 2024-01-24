@@ -69,6 +69,7 @@
 </script>
 
 
+<!-- previewImg is true only if an image has been uploaded. If so, then show the following screen. Else, show the following component. -->
 {#if previewImg}
   <!-- ---------------------- Image Uploaded ---------------------- -->
   <div class="grow h-[30%] relative">
@@ -101,12 +102,6 @@
       Upload a Picture:
     </p>
     <div class = "flex flex-row pt-10 justify-evenly">
-      <!-- <div class="flex flex-col items-center dark:bg-acc-900 dark:bg-opacity-50 bg-acc-300 bg-opacity-50 p-4 rounded-3xl">
-        <Camera class=" dark:text-scd-50 scale-150 pt-1"/>
-        <span class="dark:text-scd-50 pt-2">
-          Camera
-        </span>
-      </div> -->
       <button on:click={()=>{fileinput.click();}} class="flex flex-col items-center dark:bg-acc-900 dark:bg-opacity-50 bg-acc-300 bg-opacity-50 p-4 rounded-3xl">
         <input style="display:none" type="file" accept=".jpg, .jpeg, .png" capture="environment" on:change={(e)=>onFileSelected(e)} bind:this={fileinput}>
         <Camera class=" dark:text-scd-50 scale-150 pt-1"/>
